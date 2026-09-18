@@ -105,6 +105,9 @@ export default function TranscriptDetail() {
                 pdfStatus={pdfStatus}
                 transcript={transcript}
               />
+              <div className="mt-6 lg:hidden">
+                <ExpertCard expert={transcript.expert} />
+              </div>
               <RelatedTranscripts
                 excludeId={transcript.id}
                 purchasedIds={purchasedIds}
@@ -121,7 +124,9 @@ export default function TranscriptDetail() {
                   onBuyNow={handleBuyNow}
                 />
               )}
-              <ExpertCard expert={transcript.expert} />
+              <div className="hidden lg:block">
+                <ExpertCard expert={transcript.expert} />
+              </div>
             </div>
           </div>
         </div>

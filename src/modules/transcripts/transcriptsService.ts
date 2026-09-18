@@ -15,6 +15,8 @@ export type RawExpert = {
   id: number;
   name: string | null;
   designation: string | null;
+  yearsOfExperience: number | null;
+  aboutExpert: string | null;
 };
 
 export type RawTranscript = {
@@ -46,9 +48,10 @@ export const mapTranscript = (raw: RawTranscript): Transcript => ({
   keyInsights: raw.keyInsights,
   expert: {
     name: raw.expert?.name ?? "Unknown",
-    title: raw.expert?.designation ?? "",
+    designation: raw.expert?.designation ?? "",
     company: "",
-    yearsOfExperience: 0,
+    yearsOfExperience: raw.expert?.yearsOfExperience ?? 0,
+    aboutExpert: raw.expert?.aboutExpert ?? "",
     email: "",
     linkedinUrl: "",
   },
