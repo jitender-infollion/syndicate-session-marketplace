@@ -10,9 +10,10 @@ export type DomainOption = {
 
 export type Expert = {
   name: string;
-  title: string;
+  designation: string;
   company: string;
   yearsOfExperience: number;
+  aboutExpert: string;
   email: string;
   linkedinUrl: string;
 };

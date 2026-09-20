@@ -1,16 +1,9 @@
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import type { Expert } from "../../types";
 
 type ExpertCardProps = {
   expert: Expert;
 };
-
-const getInitials = (name: string): string =>
-  name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
 
 export default function ExpertCard({ expert }: ExpertCardProps) {
   return (
@@ -21,15 +14,21 @@ export default function ExpertCard({ expert }: ExpertCardProps) {
 
       <div className="mt-3 flex items-center gap-3">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent text-base font-semibold text-white">
-          {getInitials(expert.name)}
+          <PersonOutlineIcon fontSize="medium" />
         </div>
         <div>
-          <p className="font-semibold text-text-primary">{expert.name}</p>
-          <p className="text-sm text-text-secondary">
-            {expert.title} 
-          </p>
+          <p className="text-sm text-text-secondary">{expert.designation}</p>
+          {expert.yearsOfExperience > 0 && (
+            <p className="text-sm text-text-secondary">
+              {expert.yearsOfExperience} yrs exp
+            </p>
+          )}
         </div>
       </div>
+
+      {expert.aboutExpert && (
+        <p className="mt-3 text-sm text-text-secondary">{expert.aboutExpert}</p>
+      )}
     </div>
   );
 }
