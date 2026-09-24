@@ -239,38 +239,55 @@ export default function Header({
         anchor="right"
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
+        PaperProps={{
+          className:
+            "bg-white dark:bg-[#333333] text-text-primary w-[300px] max-w-[85vw] shadow-2xl border-l border-gray-200 dark:border-gray-800",
+          sx: { backgroundImage: "none" },
+        }}
       >
-        <div className="flex w-72 flex-col gap-4 p-4">
-          <div className="flex items-center justify-between">
+        <div className="flex min-h-full flex-col gap-2 p-4 bg-white dark:bg-[#333333] text-text-primary">
+          <div className="flex items-center justify-between pb-1">
             {logo}
             <IconButton
               aria-label="Close menu"
               onClick={() => setIsDrawerOpen(false)}
+              sx={{ color: "inherit", p: 0.5 }}
             >
-              <CloseIcon fontSize="small" />
+              <CloseIcon fontSize="medium" />
             </IconButton>
           </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-text-secondary">Theme</span>
+
+          <div className="flex items-center justify-between py-1">
+            <span className="text-base font-normal text-gray-700 dark:text-gray-300">
+              Theme
+            </span>
             <ThemeToggle />
           </div>
-          <div className="border-t border-gray-100 pt-4 dark:border-gray-800">
+
+          <div className="border-t border-gray-200 dark:border-gray-700/60 my-0.5" />
+
+          <div className="flex flex-col gap-2.5 pt-1">
             {loggedIn ? (
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-3 px-1 pb-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#333333] dark:bg-accent-2">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <div className="flex flex-col gap-2.5">
+                <div className="flex items-center gap-3 rounded-xl bg-accent/15 dark:bg-[#42392d]/60 p-3 border border-orange-500/10">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-2 text-white font-bold">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                     </svg>
                   </div>
-                  <span className="truncate text-sm font-medium text-text-primary">
+                  <span className="truncate text-base font-semibold text-text-primary">
                     {userName || "User"}
                   </span>
                 </div>
                 <Link
                   to={APP_ROUTES.profile}
                   onClick={() => setIsDrawerOpen(false)}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-text-primary transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                  className="flex items-center gap-3 rounded-xl bg-[#fff8ee] dark:bg-[#42392d] hover:bg-[#ffeedb] dark:hover:bg-[#4e4335] px-4 py-2.5 text-base font-bold text-accent-2 transition-all shadow-sm"
                 >
                   <PersonOutlineIcon fontSize="small" />
                   Profile
@@ -281,21 +298,21 @@ export default function Header({
                     logout();
                     setIsDrawerOpen(false);
                   }}
-                  className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-left text-sm font-medium text-text-primary transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                  className="flex cursor-pointer items-center gap-3 rounded-xl bg-[#fff8ee] dark:bg-[#42392d] hover:bg-[#ffeedb] dark:hover:bg-[#4e4335] px-4 py-2.5 text-left text-base font-bold text-accent-2 transition-all shadow-sm"
                 >
                   <LogoutIcon fontSize="small" />
                   Logout
                 </button>
               </div>
             ) : (
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2.5">
                 <button
                   type="button"
                   onClick={() => {
                     openAuthDialog("signin");
                     setIsDrawerOpen(false);
                   }}
-                  className="cursor-pointer rounded-lg bg-accent/15 px-3 py-2.5 text-left text-sm font-bold text-accent-2 transition-colors hover:opacity-75"
+                  className="w-full cursor-pointer rounded-xl bg-[#fff8ee] dark:bg-[#42392d] hover:bg-[#ffeedb] dark:hover:bg-[#4e4335] px-4 py-2.5 text-left text-base font-bold text-accent-2 transition-all shadow-sm"
                 >
                   Login
                 </button>
@@ -305,7 +322,7 @@ export default function Header({
                     openAuthDialog("register");
                     setIsDrawerOpen(false);
                   }}
-                  className="cursor-pointer rounded-lg bg-accent/15 px-3 py-2.5 text-left text-sm font-bold text-accent-2 transition-colors hover:opacity-75"
+                  className="w-full cursor-pointer rounded-xl bg-[#fff8ee] dark:bg-[#42392d] hover:bg-[#ffeedb] dark:hover:bg-[#4e4335] px-4 py-2.5 text-left text-base font-bold text-accent-2 transition-all shadow-sm"
                 >
                   Sign up
                 </button>

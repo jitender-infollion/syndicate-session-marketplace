@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DialogModal from "../../../../components/dialog/DialogModal";
 import Chip from "../../../../components/chip/Chip";
 import { formatDate } from "../../../../utils/dateUtils";
-import { TOPIC_REQUEST_STATUS_DISPLAY, fetchTopicRequestDetail } from "./myRequestsService";
+import { fetchTopicRequestDetail } from "./myRequestsService";
 import type { TopicRequestDetail, TopicRequestItem } from "./myRequestsService";
 import { REMARK_PREVIEW_LENGTH } from "../../constants";
 
@@ -50,8 +50,6 @@ export default function TopicRequestDetailsDialog({
 
   if (!item) return null;
 
-  const statusDisplay = TOPIC_REQUEST_STATUS_DISPLAY[item.status];
-
   // Backend stores one name/linkedin pair per request, so multiple suggested
   // experts arrive as two "; "-joined strings (see form.tsx) - zip them back
   // into pairs so each expert's name and link show together.
@@ -89,13 +87,6 @@ export default function TopicRequestDetailsDialog({
         <p className="min-w-0 break-words text-sm text-text-primary">
           {item.topic}
         </p>
-
-        <p className="text-sm text-text-secondary">Status:</p>
-        <span
-          className={`inline-block w-fit rounded-full px-2.5 py-0.5 text-xs font-medium ${statusDisplay.className}`}
-        >
-          {statusDisplay.label}
-        </span>
 
         {item.domains.length > 0 && (
           <>

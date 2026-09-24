@@ -1,6 +1,5 @@
 import Chip from "../../../../components/chip/Chip";
 import { formatDate } from "../../../../utils/dateUtils";
-import { TOPIC_REQUEST_STATUS_DISPLAY } from "./myRequestsService";
 import type { TopicRequestItem } from "./myRequestsService";
 
 type TopicRequestCardProps = {
@@ -9,8 +8,6 @@ type TopicRequestCardProps = {
 };
 
 export default function TopicRequestCard({ item, onClick }: TopicRequestCardProps) {
-  const statusDisplay = TOPIC_REQUEST_STATUS_DISPLAY[item.status];
-
   return (
     <div
       onClick={onClick}
@@ -23,11 +20,6 @@ export default function TopicRequestCard({ item, onClick }: TopicRequestCardProp
         >
           {item.topic}
         </h4>
-        <span
-          className={`rounded-full px-2.5 py-0.5 text-xs font-medium shrink-0 ${statusDisplay.className}`}
-        >
-          {statusDisplay.label}
-        </span>
       </div>
 
       {item.domains.length > 0 && (
