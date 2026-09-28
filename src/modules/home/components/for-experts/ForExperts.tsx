@@ -55,7 +55,7 @@ export default function ForExperts() {
           time it's accessed.
         </p>
 
-        <div className="mt-8 flex flex-wrap items-start gap-6">
+        <div className="mt-8 flex flex-wrap items-start justify-center gap-6 sm:justify-start">
           <div className="flex flex-col items-center gap-2 text-center">
             <Link
               href={CONTRIBUTOR_SIGNUP_URL}
@@ -95,10 +95,45 @@ export default function ForExperts() {
       </div>
 
       {/* Right Column: Waveform & 4 Process Steps (Matching Reference Image) */}
-      <div className="relative w-full md:flex-[1.4] lg:flex-[1.5] min-h-[320px] sm:min-h-[380px] flex items-center">
-        <TranscriptWaveform />
+      <div className="relative w-full md:flex-[1.4] lg:flex-[1.5] sm:min-h-[380px] flex items-center">
+        <TranscriptWaveform className="hidden sm:block" />
 
-        <div className="relative z-10 w-full px-2">
+        {/* Mobile: vertical zig-zag timeline */}
+        <div className="relative w-full sm:hidden">
+          <div
+            className="absolute top-8 bottom-8 left-1/2 -translate-x-1/2 border-l-2 border-dashed pointer-events-none"
+            style={{ borderColor: COLORS.accent2 }}
+          />
+          <ol className="relative flex flex-col gap-8">
+            {STEPS.map(({ icon: Icon, title, subtitle }, index) => {
+              const textOnLeft = index % 2 === 0;
+              const text = (
+                <div className={textOnLeft ? "text-right" : "text-left"}>
+                  <p className="text-sm font-extrabold uppercase tracking-wide text-text-primary leading-tight">
+                    {title}
+                  </p>
+                  <p className="mt-1 text-xs text-text-secondary leading-normal">
+                    {subtitle}
+                  </p>
+                </div>
+              );
+              return (
+                <li
+                  key={title}
+                  className="grid grid-cols-[1fr_auto_1fr] items-center gap-4"
+                >
+                  {textOnLeft ? text : <div />}
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-main-background shadow-[0_10px_30px_rgba(0,0,0,0.12)] border border-gray-100/50 dark:border-zinc-800">
+                    <Icon style={{ color: COLORS.accent2, fontSize: "28px" }} />
+                  </div>
+                  {textOnLeft ? <div /> : text}
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+
+        <div className="relative z-10 hidden w-full px-2 sm:block">
           {/* Dashed connector line passing through circle centers */}
           <div
             className="absolute top-8 left-[12.5%] right-[12.5%] h-[0px] border-t-2 border-dashed pointer-events-none"
@@ -115,7 +150,7 @@ export default function ForExperts() {
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-main-background shadow-[0_10px_30px_rgba(0,0,0,0.12)] border border-gray-100/50 dark:border-zinc-800">
                   <Icon style={{ color: COLORS.accent2, fontSize: "28px" }} />
                 </div>
-                <span className="mt-6 text-center text-[11px] sm:text-[16px] font-extrabold uppercase tracking-wider text-text-primary leading-tight max-w-[120px]">
+                <span className="mt-6 text-center text-[11px] sm:text-[16px] font-extrabold uppercase tracking-normal sm:tracking-wider text-text-primary leading-tight max-w-[120px]">
                   {title}
                 </span>
                 <span className="mt-1.5 text-center text-[10px] sm:text-[14px] text-text-secondary leading-normal max-w-[125px]">

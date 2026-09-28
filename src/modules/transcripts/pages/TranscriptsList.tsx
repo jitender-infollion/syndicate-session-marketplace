@@ -214,6 +214,8 @@ export default function TranscriptsList() {
             handleClose={mobileFilters.setFalse}
             title="Filters"
             isFullScreen
+            // MUI zeroes padding-top on content that directly follows a DialogTitle
+            contentSx={{ paddingTop: "16px !important" }}
           >
             <FilterSidebar
               filters={sidebarFilters}
@@ -232,7 +234,9 @@ export default function TranscriptsList() {
               variant="contained"
               label={`Show ${total} result${total === 1 ? "" : "s"}`}
               onClick={mobileFilters.setFalse}
-              className="mt-6 w-full"
+              // MUI's own margin reset beats Tailwind's layered mt-* utilities
+              styles={{ marginTop: "24px" }}
+              className="w-full"
             />
           </DialogModal>
 

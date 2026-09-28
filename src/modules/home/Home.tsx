@@ -105,7 +105,7 @@ export default function Home() {
       </div>
 
       {/* For Experts section */}
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-12 lg:px-20 pb-32 pt-16 md:pb-40">
+      <div className="mx-auto w-full max-w-[1440px] px-6 sm:px-12 lg:px-20 pb-32 pt-16 md:pb-40">
         <ForExperts />
       </div>
 
